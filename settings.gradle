@@ -1,1 +1,1 @@
-include ':app', ':magicforms'
+include ':app', ':magicforms', ':magicforms', ':annotations'

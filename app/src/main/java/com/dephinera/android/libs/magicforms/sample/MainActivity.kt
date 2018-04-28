@@ -1,4 +1,4 @@
-package magicforms.libs.android.dephinera.com.magicforms
+package com.dephinera.android.libs.magicforms.sample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
