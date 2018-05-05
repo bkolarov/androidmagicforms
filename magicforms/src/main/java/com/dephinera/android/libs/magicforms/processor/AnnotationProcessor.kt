@@ -8,9 +8,7 @@ import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.ProcessingEnvironment
 import javax.annotation.processing.RoundEnvironment
 import javax.lang.model.SourceVersion
-import javax.lang.model.element.ElementKind
 import javax.lang.model.element.TypeElement
-import javax.tools.Diagnostic
 
 class AnnotationProcessor : AbstractProcessor() {
 
@@ -26,13 +24,7 @@ class AnnotationProcessor : AbstractProcessor() {
     override fun process(set: MutableSet<out TypeElement>?, roundEnvironment: RoundEnvironment?): Boolean {
         val formClasses = roundEnvironment?.getElementsAnnotatedWith(MagicForm::class.java)
 
-        formClasses?.forEach {
-            if (it.kind != ElementKind.CLASS) {
-                processingEnv.messager.printMessage(Diagnostic.Kind.ERROR, MagicForm::class.qualifiedName + " must be used on classes only!")
-            }
-
-            magicFormProcessor.processClass(it as TypeElement)
-        }
+        magicFormProcessor.processClasses(formClasses)
 
         return true
     }

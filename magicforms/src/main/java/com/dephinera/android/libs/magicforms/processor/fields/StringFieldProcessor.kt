@@ -2,6 +2,7 @@ package com.dephinera.android.libs.magicforms.processor.fields
 
 import com.dephinera.android.libs.magicforms.annotations.StringFormField
 import com.dephinera.android.libs.magicforms.processor.log.Logger
+import com.dephinera.android.libs.magicforms.processor.util.StringUtils
 import javax.annotation.processing.ProcessingEnvironment
 import javax.lang.model.element.VariableElement
 
@@ -24,15 +25,7 @@ class StringFieldProcessor {
 
     private fun processField(fieldElement: VariableElement) {
         Logger.n("processing field: ${fieldElement.simpleName}")
-        Logger.n("getter: ${getterNameFor(fieldElement)}")
+        Logger.n("getter: ${StringUtils.getterNameFor(fieldElement)}")
 
-    }
-
-    private fun getterNameFor(fieldElement: VariableElement): String {
-        val fieldName = fieldElement.simpleName.toString()
-
-        val capitalizedName = fieldName.replace(Regex("^[a-zA-Z]"), "${fieldName[0].toUpperCase()}")
-
-        return "get$capitalizedName"
     }
 }
